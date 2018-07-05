@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+
+
+<?import javafx.scene.control.ToggleGroup?>
+<MenuBar xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.melnikov.hdAgent.controllers.MenuController">
+    <menus>
+        <Menu fx:id="menu_connection" mnemonicParsing="false" >
+            <items>
+                <MenuItem mnemonicParsing="false" fx:id="testConnection" onAction="#testConnection"/>
+                <MenuItem mnemonicParsing="false" fx:id="re_connect" onAction="#reconnect"  />
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" fx:id="exitApp" onAction="#exitApplication" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" fx:id="menu_actions" >
+            <items>
+                <MenuItem mnemonicParsing="false" fx:id="refreshAgents" onAction="#refreshAgents"  />
+
+            <MenuItem mnemonicParsing="false" fx:id="refreshPhones" onAction="#refreshPhones" />
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" fx:id="cancelCurrent" onAction="#canselCurrent"/>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" fx:id="menu_lang">
+            <items>
+                <fx:define>
+                    <ToggleGroup fx:id="selectLang"/>
+                </fx:define>
+            <RadioMenuItem fx:id="RUS" mnemonicParsing="false" toggleGroup="$selectLang" selected="true" />
+            <RadioMenuItem fx:id="ENG" mnemonicParsing="false" toggleGroup="$selectLang"/>
+
+            </items>
+        </Menu>
+    </menus>
+</MenuBar>

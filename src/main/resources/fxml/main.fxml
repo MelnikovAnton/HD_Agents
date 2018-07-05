@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.melnikov.hdAgent.controllers.MainController">
+    <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane>
+                <fx:include fx:id="menu" source="menu.fxml" />
+                </AnchorPane>
+            <AnchorPane VBox.vgrow="ALWAYS">
+                <TabPane fx:id="mainTabPain" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+                            <Tab fx:id="agentTab">
+                                <fx:include fx:id="agentsTableTab" source="agent.fxml" />
+                            </Tab>
+
+                            <Tab fx:id="phoneTab">
+                                <fx:include fx:id="phonesTableTab" source="phone.fxml" />
+                            </Tab>
+                        </TabPane>
+                </AnchorPane>
+        </VBox>
+</AnchorPane>
