@@ -1,169 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>ru.melnikov</groupId>
     <artifactId>HdAgents</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-
-        <properties>
-            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <maven.compiler.source>10</maven.compiler.source>
-            <maven.compiler.target>10</maven.compiler.target>
-        </properties>
-
-
-
-        <dependencies>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
-            <dependency>
-                <groupId>com.jcraft</groupId>
-                <artifactId>jsch</artifactId>
-                <version>0.1.54</version>
-            </dependency>
-
-
-
-        </dependencies>
-
-
-        <build>
-
-
-            <resources>
-                <resource>
-                    <directory>src/main/resources</directory>
-                    <excludes>
-                        <exclude>bundle.properties</exclude>
-                        <exclude>bundle_ENG.properties</exclude>
-                        <exclude>bundle_RUS.properties</exclude>
-                        <exclude>properties.xml</exclude>
-                    </excludes>
-                </resource>
-            </resources>
-
-            <plugins>
-
-                <!--FX plugin-->
-
-                <plugin>
-                    <groupId>com.zenjava</groupId>
-                    <artifactId>javafx-maven-plugin</artifactId>
-                    <version>8.8.3</version>
-                    <configuration>
-                        <mainClass>ru.melnikov.hdAgent.Main</mainClass>
-                    </configuration>
-                </plugin>
-
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.0.0</version>
-                    <executions>
-                        <execution>
-                            <id>my-maven-assembly-plugin</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <finalName>HdAgent</finalName>
-                        <appendAssemblyId>false</appendAssemblyId>
-                        <descriptorRefs>
-                            <descriptorRef>jar-with-dependencies</descriptorRef>
-                        </descriptorRefs>
-                        <archive>
-                            <manifest>
-                                <mainClass>ru.melnikov.hdAgent.Main</mainClass>
-                            </manifest>
-                            <manifestEntries>
-                                <Class-Path>config/</Class-Path>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>com.akathist.maven.plugins.launch4j</groupId>
-                    <artifactId>launch4j-maven-plugin</artifactId>
-                    <version>1.7.22</version>
-                    <executions>
-                        <execution>
-                            <id>l4j-clui</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>launch4j</goal>
-                            </goals>
-                            <configuration>
-                                <headerType>gui</headerType>
-                                <!--<headerType>console</headerType>-->
-                                <jar>target/HdAgent.jar</jar>
-                                <outfile>target/HdAgent.exe</outfile>
-                                <errTitle>${project.name}</errTitle>
-
-                                <jre>
-                                    <path>${java.home}</path> <!-- if you bundle the jre -->
-                                </jre>
-
-                                <versionInfo>
-                                    <fileVersion>0.0.0.1</fileVersion>
-                                    <txtFileVersion>${project.version}</txtFileVersion>
-                                    <fileDescription>hd agents</fileDescription>
-                                    <copyright>(c) ${project.inceptionYear} MyCompany</copyright>
-                                    <productVersion>0.0.0.1</productVersion>
-                                    <txtProductVersion>${project.version}</txtProductVersion>
-                                    <productName>${project.name}</productName>
-                                    <companyName>MyCompany</companyName>
-                                    <internalName>${project.name}</internalName>
-                                    <originalFilename>${project.name}.exe</originalFilename>
-                                </versionInfo>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <phase>generate-resources</phase>
-                            <goals>
-                                <goal>run</goal>
-                            </goals>
-                            <configuration>
-                                <tasks>
-                                    <mkdir dir="${project.build.directory}"/>
-                                    <copy file="${basedir}/src/main/resources/bundle.properties"
-                                          tofile="${project.build.directory}/config/bundle.properties"/>
-                                    <copy file="${basedir}/src/main/resources/bundle_ENG.properties"
-                                          tofile="${project.build.directory}/config/bundle_ENG.properties"/>
-                                    <copy file="${basedir}/src/main/resources/bundle_RUS.properties"
-                                          tofile="${project.build.directory}/config/bundle_RUS.properties"/>
-                                    <copy file="${basedir}/src/main/resources/properties.xml"
-                                          tofile="${project.build.directory}/config/properties.xml"/>
-                                </tasks>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-            </plugins>
-
-        </build>
-
-    </project>
-
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>10</maven.compiler.source>
+        <maven.compiler.target>10</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.54</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <!--Exclude resources from jar becouse we copy them to /config folder-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>bundle.properties</exclude>
+                    <exclude>bundle_ENG.properties</exclude>
+                    <exclude>bundle_RUS.properties</exclude>
+                    <exclude>properties.xml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <!--FX plugin-->
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.8.3</version>
+                <configuration>
+                    <mainClass>ru.melnikov.hdAgent.Main</mainClass>
+                </configuration>
+            </plugin>
+            <!--assembly plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>my-maven-assembly-plugin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>HdAgent</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>ru.melnikov.hdAgent.Main</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>config/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!--Launch4j plugin-->
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>1.7.22</version>
+                <executions>
+                    <execution>
+                        <id>l4j-clui</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <headerType>gui</headerType>
+                            <!--<headerType>console</headerType>-->
+                            <jar>target/HdAgent.jar</jar>
+                            <outfile>target/HdAgent.exe</outfile>
+                            <errTitle>${project.name}</errTitle>
+                            <jre>
+                                <path>${java.home}</path>
+                                <!--if you bundle the jre-->
+                            </jre>
+                            <versionInfo>
+                                <fileVersion>0.0.0.1</fileVersion>
+                                <txtFileVersion>${project.version}</txtFileVersion>
+                                <fileDescription>hd agents</fileDescription>
+                                <copyright>(c) ${project.inceptionYear} MyCompany</copyright>
+                                <productVersion>0.0.0.1</productVersion>
+                                <txtProductVersion>${project.version}</txtProductVersion>
+                                <productName>${project.name}</productName>
+                                <companyName>MyCompany</companyName>
+                                <internalName>${project.name}</internalName>
+                                <originalFilename>${project.name}.exe</originalFilename>
+                            </versionInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--ant plugin for copy recources in config folder-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <mkdir dir="${project.build.directory}"/>
+                                <copy file="${basedir}/src/main/resources/bundle.properties" tofile="${project.build.directory}/config/bundle.properties"/>
+                                <copy file="${basedir}/src/main/resources/bundle_ENG.properties" tofile="${project.build.directory}/config/bundle_ENG.properties"/>
+                                <copy file="${basedir}/src/main/resources/bundle_RUS.properties" tofile="${project.build.directory}/config/bundle_RUS.properties"/>
+                                <copy file="${basedir}/src/main/resources/properties.xml" tofile="${project.build.directory}/config/properties.xml"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
