@@ -1,6 +1,7 @@
 package ru.melnikov.hdAgent.dao;
 
 import com.jcraft.jsch.JSchException;
+import org.apache.log4j.Logger;
 import ru.melnikov.hdAgent.models.GeneralModel;
 import ru.melnikov.hdAgent.ossi.MyOssiTerminal;
 
@@ -12,13 +13,15 @@ import java.util.concurrent.TimeoutException;
 
 public class GenerealDAO<T extends GeneralModel> {
 
+    private static final Logger log = Logger.getLogger(GenerealDAO.class);
+
     final MyOssiTerminal terminal;
 
     private T type;
 
 
     public GenerealDAO(MyOssiTerminal terminal) {
-        System.out.println(Thread.currentThread().getName() + " terminal is "+ terminal) ;
+        log.info("Set terminal "+ terminal); ;
         this.terminal=terminal;
     }
 
@@ -45,9 +48,8 @@ public class GenerealDAO<T extends GeneralModel> {
     public String testConnection() throws TimeoutException {
         ArrayList<HashMap<String, String>> rez = terminal.sendCommand("list configuration software-versions ");
         for (HashMap<String, String>item: rez) {
-            System.out.println("--------------------------");
             for (String key:item.keySet()) {
-                System.out.println("key:" + key+ " value:"+item.get(key));
+                log.info("key:" + key+ " value:"+item.get(key));
             }
         }
     //    rez.get(0).get("0faeff00");

@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
+import org.apache.log4j.Logger;
 import ru.melnikov.hdAgent.ObservableResourceFactory;
 import ru.melnikov.hdAgent.dao.AgentsDAO;
 import ru.melnikov.hdAgent.dao.GenerealDAO;
@@ -22,6 +23,8 @@ import java.util.ResourceBundle;
 
 
 public class AgentController extends GeneralController implements Initializable {
+
+    private static final Logger log = Logger.getLogger(AgentController.class);
 
 
     @FXML
@@ -42,7 +45,7 @@ public class AgentController extends GeneralController implements Initializable 
 
     public AgentController() {
         super();
-        System.out.println("Agent Controller constructor");
+        log.info("Agent Controller constructor");
     }
 
 
@@ -50,8 +53,8 @@ public class AgentController extends GeneralController implements Initializable 
         String name = event.getNewValue();
         TablePosition<Agent, String> pos = event.getTablePosition();
         Agent agent = agentsTable.getItems().get(pos.getRow());
-        System.out.println("change name from " + event.getOldValue() + " to " + name);
-        System.out.println("event type " + event.getClass());
+        log.info("change name from " + event.getOldValue() + " to " + name);
+        log.info("event type " + event.getClass());
         agent.setName(name);
         Task task = new Task() {
             @Override
@@ -69,7 +72,7 @@ public class AgentController extends GeneralController implements Initializable 
 
 
     public void injectMainController(MainController mainController) {
-        System.out.println("Agent controller injection...");
+        log.info("Agent controller injection...");
         this.mainController = mainController;
         this.agentsDao = new AgentsDAO(mainController.getTerminal());
         this.agentList = mainController.getAgentList();
@@ -114,12 +117,12 @@ public class AgentController extends GeneralController implements Initializable 
     }
 
     public void changeLang(){
-        System.out.println("before ext = " +ext.get());
+        log.info("before ext = " +ext.get());
         RESOURCE_FACTORY.setResources(ResourceBundle.getBundle("bundle", new Locale("ENG")));
 
-        System.out.println("current value = " +RESOURCE_FACTORY.getStringBinding("agents.ext").get());
+        log.info("current value = " +RESOURCE_FACTORY.getStringBinding("agents.ext").get());
 
-        System.out.println("after ext = " +ext.get());
+        log.info("after ext = " +ext.get());
     }
 
     private void postInject(){
@@ -154,10 +157,7 @@ public class AgentController extends GeneralController implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("initialize....");
-
-
-        System.out.println("Agent controller FXML initialazition...");
+        log.info("Agent controller FXML initialazition...");
         agentTableprogress.setVisible(false);
 
 

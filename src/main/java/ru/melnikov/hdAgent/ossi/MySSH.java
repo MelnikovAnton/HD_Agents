@@ -4,7 +4,7 @@ import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-
+import org.apache.log4j.Logger;
 
 
 import java.io.*;
@@ -12,6 +12,8 @@ import java.util.concurrent.TimeoutException;
 
 
 class MySSH {
+
+    private static final Logger log = Logger.getLogger(MySSH.class);
 
     private final JSch jSch;
     private Session sshSession;
@@ -75,8 +77,7 @@ class MySSH {
         try {
             return String.valueOf((char) input.read());
         } catch (IOException e) {
-            System.out.println("IO exception in readChar.  Status input is " + input);
-            e.printStackTrace();
+            log.error("IO exception in readChar.  Status input is " + input,e);
             return "";
         }
 
@@ -95,22 +96,21 @@ class MySSH {
                 throw new TimeoutException("timeout read ssh method");
             }
            if (Thread.currentThread().isInterrupted()) {
-               System.out.println("Thread Interrupt");
-               System.out.println("Thread chanel is connected " + channel.isConnected());
+               log.warn("Thread Interrupt");
     //         throw new TimeoutException("test interrupt");
                Thread.currentThread().interrupt();
                return "";
            }
 
         }while (!line.toString().contains(s));
-        System.out.println("<= " + line);
+        log.debug("<= " + line);
         return line.toString();
     }
 
 
 
     public void write(String line){
-        System.out.println("=>" + line);
+        log.debug("=>" + line);
         output.print(line);
         output.flush();
     }

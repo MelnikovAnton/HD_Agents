@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import org.apache.log4j.Logger;
 import ru.melnikov.hdAgent.ObservableResourceFactory;
 
 import java.io.IOException;
@@ -13,6 +14,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MenuController extends GeneralController implements Initializable {
+
+    private static final Logger log = Logger.getLogger(MenuController.class);
+
     private ResourceBundle bundle;
 
     private MainController mainController;
@@ -80,7 +84,7 @@ public class MenuController extends GeneralController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("initialize....");
+        log.info("initialize....");
 
         menu_lang.setVisible(true);
         RUS.setVisible(true);

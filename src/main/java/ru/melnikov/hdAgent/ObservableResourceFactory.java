@@ -3,10 +3,14 @@ package ru.melnikov.hdAgent;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import org.apache.log4j.Logger;
 
 import java.util.ResourceBundle;
 
 public class ObservableResourceFactory {
+
+    private static final Logger log = Logger.getLogger(ObservableResourceFactory.class);
+
     private final ObjectProperty<ResourceBundle> resources = new SimpleObjectProperty<>();
     private ObjectProperty<ResourceBundle> resourcesProperty() {
         return resources ;
@@ -15,6 +19,7 @@ public class ObservableResourceFactory {
         return resourcesProperty().get();
     }
     public final void setResources(ResourceBundle resources) {
+        log.info("Language changed to " + resources.getLocale().toString());
         resourcesProperty().set(resources);
     }
 

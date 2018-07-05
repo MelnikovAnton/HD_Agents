@@ -2,6 +2,7 @@ package ru.melnikov.hdAgent.ossi;
 
 
 import com.jcraft.jsch.JSchException;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.concurrent.TimeoutException;
 
 
 public class MyOssiTerminal {
+
+
 
     private MySSH sshClient;
 

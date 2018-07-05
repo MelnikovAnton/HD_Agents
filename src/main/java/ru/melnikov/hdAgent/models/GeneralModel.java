@@ -9,7 +9,6 @@ public abstract class GeneralModel {
     public GeneralModel(HashMap<String, String> map) {
         fields.clear();
         fields.putAll(map);
- //       System.out.println(this);
         init();
     }
 

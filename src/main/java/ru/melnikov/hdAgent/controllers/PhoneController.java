@@ -11,6 +11,7 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
+import org.apache.log4j.Logger;
 import ru.melnikov.hdAgent.ObservableResourceFactory;
 import ru.melnikov.hdAgent.dao.GenerealDAO;
 import ru.melnikov.hdAgent.dao.PhoneDao;
@@ -25,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class PhoneController extends GeneralController implements Initializable {
 
-
+    private static final Logger log = Logger.getLogger(PhoneController.class);
 
     @FXML private TableView<Phone> phonesTable;
     @FXML private ProgressBar phonesTableprogress;
@@ -44,12 +45,12 @@ public class PhoneController extends GeneralController implements Initializable 
 
     public PhoneController() {
         super();
-        System.out.println("Phone Controller constructor");
+        log.info("Phone Controller constructor");
     }
 
 
     public void injectMainController(MainController mainController) {
-        System.out.println("Phones ingect");
+        log.info("Phones ingect");
         this.mainController=mainController;
         this.phoneDao = new PhoneDao(mainController.getTerminal());
         this.phoneList=mainController.getPhoneList();
@@ -68,7 +69,7 @@ public class PhoneController extends GeneralController implements Initializable 
         String name = event.getNewValue();
         TablePosition<Phone, String> pos = event.getTablePosition();
         Phone phone = phonesTable.getItems().get(pos.getRow());
-        System.out.println("change name from " + event.getOldValue() + " to " + name);
+        log.info("change name from " + event.getOldValue() + " to " + name);
         phone.setName(name);
         changePhone(phone);
 
@@ -125,10 +126,10 @@ public class PhoneController extends GeneralController implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("initialize....");
+        log.info("initialize....");
 
 
-        System.out.println("Phone Controller FXML initialization...");
+        log.info("Phone Controller FXML initialization...");
 
   //      eventPhoneLable.textProperty().bind();
 

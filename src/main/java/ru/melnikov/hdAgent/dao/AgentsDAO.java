@@ -2,6 +2,7 @@ package ru.melnikov.hdAgent.dao;
 
 
 
+import org.apache.log4j.Logger;
 import ru.melnikov.hdAgent.models.Agent;
 import ru.melnikov.hdAgent.ossi.MyOssiTerminal;
 

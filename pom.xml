@@ -39,17 +39,17 @@
         <build>
 
 
-            <resources>
-                <resource>
-                    <directory>src/main/resources</directory>
-                    <excludes>
-                        <exclude>bundle.properties</exclude>
-                        <exclude>bundle_ENG.properties</exclude>
-                        <exclude>bundle_RUS.properties</exclude>
-                        <exclude>properties.xml</exclude>
-                    </excludes>
-                </resource>
-            </resources>
+            <!--<resources>-->
+                <!--<resource>-->
+                    <!--<directory>src/main/resources</directory>-->
+                    <!--<excludes>-->
+                        <!--<exclude>bundle.properties</exclude>-->
+                        <!--<exclude>bundle_ENG.properties</exclude>-->
+                        <!--<exclude>bundle_RUS.properties</exclude>-->
+                        <!--<exclude>properties.xml</exclude>-->
+                    <!--</excludes>-->
+                <!--</resource>-->
+            <!--</resources>-->
 
             <plugins>
 

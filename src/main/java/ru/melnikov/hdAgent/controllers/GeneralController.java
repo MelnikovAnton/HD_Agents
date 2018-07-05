@@ -9,6 +9,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TabPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import org.apache.log4j.Logger;
 import ru.melnikov.hdAgent.ObservableResourceFactory;
 import ru.melnikov.hdAgent.dao.GenerealDAO;
 import ru.melnikov.hdAgent.ossi.MyOssiTerminal;
@@ -20,6 +21,8 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 class GeneralController implements Initializable {
+
+    private static final Logger log = Logger.getLogger(GeneralController.class);
 
     private  ResourceBundle bundle;
 
@@ -42,18 +45,14 @@ class GeneralController implements Initializable {
     private ObservableResourceFactory RESOURCE_FACTORY;
 
 
-    GeneralController() {
-        System.out.println("General Controller constructor");
-    }
-
 
     void init(){
-        System.out.println("General Controller initialization....");
+        log.info("General Controller initialization....");
         Properties props = null;
         try {
             props = loadProperty();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Cannot load propperty ",e);
         }
         HOST = (String) Objects.requireNonNull(props).get("cm_host");
         USER = (String) Objects.requireNonNull(props).get("cm_user");
@@ -86,7 +85,8 @@ class GeneralController implements Initializable {
 
     public void refresh() {
         int tab = generalTabPain.getSelectionModel().getSelectedIndex();
-        System.out.println("tab" + tab);
+        log.info("refresh tab " + tab);
+
         switch (tab) {
             case 0:
                 agentController.refresh();
@@ -127,7 +127,7 @@ class GeneralController implements Initializable {
 
 
     private void onCancel(Thread thread){
-        System.out.println("cancelling Task...");
+        log.info("cancelling Task...");
         thread.interrupt();
         setUI(null,Color.RED,bundle.getString("message.cancel"),"");
     }
@@ -152,7 +152,7 @@ class GeneralController implements Initializable {
     private void setEnviroment() {
 
         int tab = generalTabPain.getSelectionModel().getSelectedIndex();
-        System.out.println("Setting Enviroment for tab" + tab);
+        log.info("Setting Enviroment for tab" + tab);
         switch (tab) {
             case 0: {
                 progress = agentController.getAgentTableprogress();
@@ -189,7 +189,7 @@ class GeneralController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("initialize....");
+        log.info("initialize....");
         this.bundle=resources;
     }
 

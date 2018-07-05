@@ -4,6 +4,7 @@ public enum PhoneType {
 
     t9641("AVAYA 9641","9641"),
     t9608("AVAYA 9608","9608"),
+    t9620("AVAYA 9620","9620"),
     t4620("ONE-X Communicator","4620"),
     t1608("AVAYA 1608","1608"),
     uncknown("null","");

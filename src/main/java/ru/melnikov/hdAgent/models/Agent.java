@@ -2,10 +2,13 @@ package ru.melnikov.hdAgent.models;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 
 public class Agent extends GeneralModel {
+
+    private static final Logger log = Logger.getLogger(Agent.class);
 
     private StringProperty name;//= new SimpleStringProperty();
     private StringProperty extension;// = new SimpleStringProperty();
@@ -59,10 +62,6 @@ public class Agent extends GeneralModel {
 
     @Override
     public void init() {
-  //      System.out.println(this);
-      /*  for (String item:fields.keySet()){
-            System.out.println("key: "+ item+" value: " +fields.get(item));
-        }*/
 
         name= new SimpleStringProperty();
         extension = new SimpleStringProperty();
@@ -71,7 +70,7 @@ public class Agent extends GeneralModel {
         skills = new Skill[120];
 
 
-        System.out.println(name);
+        log.info(name);
 
         name.setValue(fields.get("0fa3ff00"));
         extension.setValue(fields.get("0fa1ff00"));

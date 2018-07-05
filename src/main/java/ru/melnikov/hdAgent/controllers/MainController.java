@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 import ru.melnikov.hdAgent.ObservableResourceFactory;
 
 
@@ -18,6 +19,8 @@ import java.util.ResourceBundle;
 
 
 public class MainController extends GeneralController implements Initializable {
+
+    private static final Logger log = Logger.getLogger(MenuController.class);
 
     //controllers
     @FXML
@@ -40,7 +43,7 @@ public class MainController extends GeneralController implements Initializable {
 
     public MainController() {
        super();
-       System.out.println("Main Controller constructor");
+       log.info("Main Controller constructor");
     }
 
     public void testConnection() {
@@ -58,7 +61,7 @@ public class MainController extends GeneralController implements Initializable {
     @FXML
     public void exitApplication() {
         generealDAO.disconect();
-        System.out.println("exiting");
+        log.info("exiting");
         Platform.exit();
         System.exit(0);
     }
@@ -66,8 +69,8 @@ public class MainController extends GeneralController implements Initializable {
     @FXML
     public void cancelCurrentTask() {
         if (currentTask != null) {
-            System.out.println("controller thread is " + Thread.currentThread().getName());
-            System.out.println("cancel current task " + currentTask);
+            log.info("controller thread is " + Thread.currentThread().getName());
+            log.info("cancel current task " + currentTask);
             currentTask.cancel();
             currentTask = null;
         }
@@ -96,12 +99,12 @@ public class MainController extends GeneralController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        System.out.println("initialize....");
+        log.info("initialize....");
 
         RESOURCE_FACTORY.setResources(resources);
         super.setRESOURCE_FACTORY(RESOURCE_FACTORY);
 
-        System.out.println("Main controller initialize...");
+        log.info("Main controller initialize...");
         init();
 
         setLables();
@@ -138,7 +141,7 @@ public class MainController extends GeneralController implements Initializable {
 
     public void setPrimaryStage(Stage stage){
         this.primaryStage=stage;
-        System.out.println(stage);
+        log.info("set primary stage " +stage);
         StringProperty title = new SimpleStringProperty();
         title.bind(RESOURCE_FACTORY.getStringBinding("title"));
         stage.titleProperty().bind(title);
