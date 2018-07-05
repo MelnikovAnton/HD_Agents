@@ -13,7 +13,6 @@ import ru.melnikov.hdAgent.controllers.MainController;
 import ru.melnikov.hdAgent.ossi.MyOssiTerminal;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
