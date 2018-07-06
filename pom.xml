@@ -19,7 +19,15 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
             <version>0.1.54</version>
+         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
+
     </dependencies>
     <build>
         <!--Exclude resources from jar becouse we copy them to /config folder-->
@@ -59,7 +67,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>HdAgent</finalName>
+                    <finalName>${project.name}</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -89,8 +97,8 @@
                         <configuration>
                             <headerType>gui</headerType>
                             <!--<headerType>console</headerType>-->
-                            <jar>target/HdAgent.jar</jar>
-                            <outfile>target/HdAgent.exe</outfile>
+                            <jar>target/${project.name}.jar</jar>
+                            <outfile>target/${project.name}.exe</outfile>
                             <errTitle>${project.name}</errTitle>
                             <jre>
                                 <path>${java.home}</path>
@@ -99,7 +107,7 @@
                             <versionInfo>
                                 <fileVersion>0.0.0.1</fileVersion>
                                 <txtFileVersion>${project.version}</txtFileVersion>
-                                <fileDescription>hd agents</fileDescription>
+                                <fileDescription>${project.name} ${project.version}</fileDescription>
                                 <copyright>(c) ${project.inceptionYear} MyCompany</copyright>
                                 <productVersion>0.0.0.1</productVersion>
                                 <txtProductVersion>${project.version}</txtProductVersion>
@@ -108,6 +116,7 @@
                                 <internalName>${project.name}</internalName>
                                 <originalFilename>${project.name}.exe</originalFilename>
                             </versionInfo>
+                            <icon>src/main/resources/telephone green.ico</icon>
                         </configuration>
                     </execution>
                 </executions>
