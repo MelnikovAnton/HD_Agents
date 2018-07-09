@@ -102,7 +102,8 @@
                             <outfile>target/${project.name}.exe</outfile>
                             <errTitle>${project.name}</errTitle>
                             <jre>
-                                <path>./jre</path>
+                                <!--<path>./jre</path>-->
+                                <path>${java.home}</path>
                                 <!--if you bundle the jre-->
                             </jre>
                             <versionInfo>
