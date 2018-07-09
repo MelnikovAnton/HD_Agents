@@ -77,7 +77,7 @@ public static void clean(){
 
         System.out.println(oldName);
 
-        var testField = new HashMap<String,String>();
+        HashMap<String, String> testField = new HashMap<String, String>();
         testField.put("8003ff00","testName");
 
         terminal.sendCommand("change station " + testExt,testField);

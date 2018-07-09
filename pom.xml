@@ -6,8 +6,8 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>10</maven.compiler.source>
-        <maven.compiler.target>10</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
@@ -53,7 +53,7 @@
                 </configuration>
             </plugin>
             <!--assembly plugin-->
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -102,7 +102,7 @@
                             <outfile>target/${project.name}.exe</outfile>
                             <errTitle>${project.name}</errTitle>
                             <jre>
-                                <path>${java.home}</path>
+                                <path>./jre</path>
                                 <!--if you bundle the jre-->
                             </jre>
                             <versionInfo>
